@@ -1,0 +1,49 @@
+.sidebar-desktop {
+    position: relative;
+}
+
+.sidebar-steps {
+    position: absolute;
+    z-index: 2;
+    width: 70%;
+}
+
+.step-number {
+    background-color: transparent;
+    border: 1px solid var(--light-blue);
+    height: 2rem;
+    width: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    margin-top: .5rem;
+    color: var(--light-blue);
+    font-size: 14px;
+}
+.step-selected {
+    background-color: var(--light-blue);
+    color: var(--purplish-blue);
+}
+
+.step-text {
+    margin: .5rem 0 0 0;
+    text-transform: uppercase;
+    color: var(--light-blue);
+    font-size: 10px;
+    opacity: .8;
+    font-weight: 400;
+}
+
+.step-title {
+    text-transform: uppercase;
+    color: var(--white);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.personal-info-text {
+    font-size: 14px;
+    color: var(--cool-gray);
+    opacity: .9;
+}
