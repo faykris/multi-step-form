@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MultiStepFormComponent {
   addUserForm: FormGroup;
+  currentStep: number = 1;
 
   constructor(private formBuilder: FormBuilder) {
     this.addUserForm = this.formBuilder.group({
@@ -17,8 +18,25 @@ export class MultiStepFormComponent {
     });
   }
 
-  onSubmit() {
-
+  previousStep() {
+    this.currentStep -= 1;
   }
 
+  isFirstStep() {
+    // if (this.addUserForm.valid) {
+      this.currentStep += 1;
+    //}
+  }
+
+  isSecondStep() {
+    this.currentStep += 1;
+  }
+
+  isThirdStep() {
+    this.currentStep += 1;
+  }
+
+  onSubmit() {
+    console.log('submit form!');
+  }
 }

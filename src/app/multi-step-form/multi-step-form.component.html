@@ -3,7 +3,7 @@
     <div class="sidebar-steps m-4">
       <div class="row">
         <div class="col-3 col-xxl-2 d-flex justify-content-center">
-          <div class="step-number step-selected">1</div>
+          <div class="step-number" [ngClass]="currentStep === 1 ? 'step-selected': ''">1</div>
         </div>
         <div class="col-9 px-0">
           <p class="step-text">step 1</p>
@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number">2</div>
+          <div class="step-number" [ngClass]="currentStep === 2 ? 'step-selected': ''">2</div>
         </div>
         <div class="col-9 px-0">
           <p class="step-text">step 2</p>
@@ -21,7 +21,7 @@
       </div>
       <div class="row">
         <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number">3</div>
+          <div class="step-number" [ngClass]="currentStep === 3 ? 'step-selected': ''">3</div>
         </div>
         <div class="col-9 px-0">
           <p class="step-text">step 3</p>
@@ -30,7 +30,7 @@
       </div>
       <div class="row">
         <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number">4</div>
+          <div class="step-number" [ngClass]="currentStep === 4 ? 'step-selected': ''">4</div>
         </div>
         <div class="col-9 px-0">
           <p class="step-text">step 4</p>
@@ -42,23 +42,61 @@
   </div>
   <div class="col-12 col-md-7 px-4">
     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
-      <div class="row mt-4">
-        <h2 class="font-weight-bold">Personal info</h2>
+      <!-- Step 1 - Your Info -->
+      <div *ngIf="currentStep === 1" class="row mt-4">
+        <h1 class="font-weight-bold">Personal info</h1>
         <p class="personal-info-text">Please provide your name, email address, and phone number.</p>
-        <div class="col-10">
+        <div class="col-11 my-2">
           <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Name</mat-label>
             <input matInput placeholder="Nombre" formControlName="name">
+            <mat-error *ngIf="addUserForm.get('name')!.hasError('required')">This field is required</mat-error>
           </mat-form-field>
         </div>
-        <div class="col-10">
+        <div class="col-11 my-2">
           <mat-form-field class="w-100">
+            <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="addUserForm.get('email')!.hasError('required')">This field is required</mat-error>
           </mat-form-field>
         </div>
-        <div class="col-10" >
+        <div class="col-11 mt-2 mb-6">
           <mat-form-field class="w-100">
-            <input matInput placeholder="Teléfono" formControlName="phone">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="email@gmail" formControlName="phone">
+            <mat-error *ngIf="addUserForm.get('phone')!.hasError('required')">This field is required</mat-error>
           </mat-form-field>
+        </div>
+        <div class="col-11 my-6 d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="isFirstStep()">Next step</button>
+        </div>
+
+      </div>
+      <!-- Step 2 - Select Plan -->
+      <div *ngIf="currentStep === 2" class="row mt-4">
+        <h1 class="font-weight-bold">Select your plan</h1>
+        <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
+        <div class="col-11 my-6 d-flex justify-content-between">
+          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+          <button class="btn btn-primary" (click)="isSecondStep()">Next step</button>
+        </div>
+      </div>
+      <!-- Step 3 - Add-Ons -->
+      <div *ngIf="currentStep === 3" class="row mt-4">
+        <h1 class="font-weight-bold">Pick add-ons</h1>
+        <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
+        <div class="col-11 my-6 d-flex justify-content-between">
+          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+          <button class="btn btn-primary" (click)="isThirdStep()">Next step</button>
+        </div>
+      </div>
+      <!-- Step 4 - Summary -->
+      <div *ngIf="currentStep === 4" class="row mt-4">
+        <h1 class="font-weight-bold">Finishing up</h1>
+        <p class="personal-info-text">Double-check everything looks OK before confiming.</p>
+        <div class="col-11 my-6 d-flex justify-content-between">
+          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+          <button class="btn btn-primary" type="submit">Confirm</button>
         </div>
       </div>
     </form>
