@@ -44,7 +44,7 @@
     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
       <!-- Step 1 - Your Info -->
       <div *ngIf="currentStep === 1" class="row mt-4">
-        <h1 class="font-weight-bold">Personal info</h1>
+        <h1 class="step-main-title">Personal info</h1>
         <p class="personal-info-text">Please provide your name, email address, and phone number.</p>
         <div class="col-11 my-2">
           <mat-form-field appearance="fill" class="w-100">
@@ -74,17 +74,88 @@
       </div>
       <!-- Step 2 - Select Plan -->
       <div *ngIf="currentStep === 2" class="row mt-4">
-        <h1 class="font-weight-bold">Select your plan</h1>
+        <h1 class="step-main-title">Select your plan</h1>
         <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
+        <div class="row px-0 mx-0">
+          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 1 ? 'plan-selected': ''" (click)="selectPlan(1)">
+            <div class="plan-icon">
+              <img src="assets/images/icon-arcade.svg" alt="Arcade Icon">
+            </div>
+            <div class="plan-description">
+              <p class="m-0"><strong>Arcade</strong></p>
+              <p class="p-0">$9/mo</p>
+            </div>
+          </div>
+          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 2 ? 'plan-selected': ''" (click)="selectPlan(2)">
+            <div class="plan-icon">
+              <img src="assets/images/icon-advanced.svg" alt="Arcade Icon">
+            </div>
+            <div class="plan-description">
+              <p class="m-0"><strong>Advanced</strong></p>
+              <p class="p-0">$12/mo</p>
+            </div>
+          </div>
+          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 3 ? 'plan-selected': ''" (click)="selectPlan(3)">
+            <div class="plan-icon">
+              <img src="assets/images/icon-pro.svg" alt="Pro Icon">
+            </div>
+            <div class="plan-description">
+              <p class="m-0"><strong>Pro</strong></p>
+              <p class="p-0">$15/mo</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="period-toggle-area">
+            <span>Monthly</span>
+            <mat-slide-toggle formControlName="period" class="mx-2">
+              <span class="mx-2">Yearly</span> 
+            </mat-slide-toggle>
+          </div>
+        </div>
         <div class="col-11 my-6 d-flex justify-content-between">
           <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
           <button class="btn btn-primary" (click)="isSecondStep()">Next step</button>
         </div>
       </div>
+
       <!-- Step 3 - Add-Ons -->
       <div *ngIf="currentStep === 3" class="row mt-4">
-        <h1 class="font-weight-bold">Pick add-ons</h1>
+        <h1 class="step-main-title">Pick add-ons</h1>
         <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
+        <div class="col-11 add-ons my-2">
+          <div>
+            <mat-checkbox name="fieldName" ngDefaultControl formControlName="onlineService">
+              <p class="add-ons-title">Online Service</p>
+              <p class="personal-info-text">Access to multiplayer games</p>
+            </mat-checkbox>
+          </div>
+          <div class="add-ons-price">
+            <p class="m-0">+$1/mo</p>
+          </div>
+        </div>
+        <div class="col-11 add-ons my-2">
+          <div>
+            <mat-checkbox ngDefaultControl formControlName="largeStorage">
+              <p class="add-ons-title">Large storage</p>
+              <p class="personal-info-text">Extra 1TB of clud save</p>
+            </mat-checkbox>
+          </div>
+          <div class="add-ons-price">
+            <p class="m-0">+$2/mo</p>
+          </div>
+        </div>
+        <div class="col-11 add-ons my-2">
+          <div>
+            <mat-checkbox ngDefaultControl formControlName="customizableProfile">
+              <p class="add-ons-title">Customizable profile</p>
+              <p class="personal-info-text">Custom theme on your profile</p>
+            </mat-checkbox>
+          </div>
+          <div class="add-ons-price">
+            <p class="m-0">+$2/mo</p>
+          </div>
+        </div>
         <div class="col-11 my-6 d-flex justify-content-between">
           <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
           <button class="btn btn-primary" (click)="isThirdStep()">Next step</button>
@@ -92,8 +163,35 @@
       </div>
       <!-- Step 4 - Summary -->
       <div *ngIf="currentStep === 4" class="row mt-4">
-        <h1 class="font-weight-bold">Finishing up</h1>
+        <h1 class="step-main-title">Finishing up</h1>
         <p class="personal-info-text">Double-check everything looks OK before confiming.</p>
+        <div class="col-11 my-2 finishing-card">
+          <div class="finishing-header">
+            <div>
+              <p class="m-0 finishing-plan">Arcade (Monthly)</p>
+              <a href="#" (click)="goStep(2)">Change</a>
+            </div>
+            <div>
+              <p class="m-0">$9/mo</p>
+            </div>
+          </div>
+          <div class="finishing-body">
+            <div>
+              <p class="m-0">Online Service</p>
+            </div>
+            <div>
+              <p class="m-0">+$1/mo</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 my-2 finishing-total">
+          <div>
+            <p class="m-0">Total(per month)</p>
+          </div>
+          <div>
+            <h3 class="m-0">+$120/mo</h3>
+          </div>
+        </div>
         <div class="col-11 my-6 d-flex justify-content-between">
           <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
           <button class="btn btn-primary" type="submit">Confirm</button>

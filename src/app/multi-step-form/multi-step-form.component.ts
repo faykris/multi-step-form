@@ -8,13 +8,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MultiStepFormComponent {
   addUserForm: FormGroup;
-  currentStep: number = 1;
+  currentStep: number = 4;
+  currentPlan: number = 1;
 
   constructor(private formBuilder: FormBuilder) {
     this.addUserForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]]
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      period: [false],
+      onlineService: [false],
+      largeStorage: [false],
+      customizableProfile: [false],
     });
   }
 
@@ -30,6 +35,14 @@ export class MultiStepFormComponent {
 
   isSecondStep() {
     this.currentStep += 1;
+  }
+
+  selectPlan(plan: number) {
+    this.currentPlan = plan;
+  }
+
+  goStep(step: number) {
+    this.currentStep = step;
   }
 
   isThirdStep() {
