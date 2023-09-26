@@ -10,6 +10,8 @@ export class MultiStepFormComponent {
   addUserForm: FormGroup;
   currentStep: number = 4;
   currentPlan: number = 1;
+  finishedForm = true;
+  selectedPlan: any = {};
 
   constructor(private formBuilder: FormBuilder) {
     this.addUserForm = this.formBuilder.group({
@@ -51,5 +53,6 @@ export class MultiStepFormComponent {
 
   onSubmit() {
     console.log('submit form!');
+    this.finishedForm = true;
   }
 }

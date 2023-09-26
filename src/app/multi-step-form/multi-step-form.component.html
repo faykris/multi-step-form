@@ -162,7 +162,7 @@
         </div>
       </div>
       <!-- Step 4 - Summary -->
-      <div *ngIf="currentStep === 4" class="row mt-4">
+      <div *ngIf="currentStep === 4 && !finishedForm" class="row mt-4">
         <h1 class="step-main-title">Finishing up</h1>
         <p class="personal-info-text">Double-check everything looks OK before confiming.</p>
         <div class="col-11 my-2 finishing-card">
@@ -198,6 +198,16 @@
         </div>
       </div>
     </form>
+    <div *ngIf="currentStep === 4 && finishedForm" class="thanks"> 
+      <div class="thanks-container">
+        <img src="assets\images\icon-thank-you.svg" width="60" alt="thank you image">
+        <h1 class="step-main-title w-100">Thank you!</h1>
+        <p>
+          Thanks for confirming ypur subscription! We hope you have fun using our platform. 
+          If you ever need support,please feel free to email us at support@loremgaming.com.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 

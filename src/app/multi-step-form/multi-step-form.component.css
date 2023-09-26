@@ -158,3 +158,23 @@
     font-weight: 500;
 }
 
+.thanks {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.thanks-container {
+    padding-right: 2rem;
+}
+
+.thanks-container img {
+    margin-bottom: 2rem;
+}
+
+.thanks-container p {
+    color: var(--cool-gray);
+}
