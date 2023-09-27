@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { gaming } from 'src/tools/plans.object';
+
 
 @Component({
   selector: 'app-multi-step-form',
@@ -8,9 +10,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MultiStepFormComponent {
   addUserForm: FormGroup;
-  currentStep: number = 4;
+  currentStep: number = 2;
   currentPlan: number = 1;
-  finishedForm = true;
+  finishedForm = false;
+  plans: any[] = gaming.plans;
+  add_ons: any[] = gaming.add_ons;
   selectedPlan: any = {};
 
   constructor(private formBuilder: FormBuilder) {
@@ -18,11 +22,15 @@ export class MultiStepFormComponent {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
-      period: [false],
+      isYearly: [false],
       onlineService: [false],
       largeStorage: [false],
       customizableProfile: [false],
     });
+  }
+
+  get form () {
+    return this.addUserForm.controls;
   }
 
   previousStep() {
@@ -39,8 +47,9 @@ export class MultiStepFormComponent {
     this.currentStep += 1;
   }
 
-  selectPlan(plan: number) {
-    this.currentPlan = plan;
+  selectPlan(planId: number) {
+    this.currentPlan = planId;
+    this.selectedPlan = this.plans.filter(plan => plan.id === planId)[0];
   }
 
   goStep(step: number) {

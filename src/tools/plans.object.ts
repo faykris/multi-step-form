@@ -1,4 +1,4 @@
-export const subscription = {
+export const gaming = {
   plans: [
     {
       id: 1,

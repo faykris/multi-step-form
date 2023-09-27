@@ -77,39 +77,31 @@
         <h1 class="step-main-title">Select your plan</h1>
         <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
         <div class="row px-0 mx-0">
-          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 1 ? 'plan-selected': ''" (click)="selectPlan(1)">
+
+          <div class="col-3 my-2 plan-box"
+            *ngFor="let plan of plans"
+            [ngClass]="currentPlan === plan.id ? 'plan-selected': ''"
+            (click)="selectPlan(plan.id)">
             <div class="plan-icon">
-              <img src="assets/images/icon-arcade.svg" alt="Arcade Icon">
+              <img [src]="plan.image_url" [alt]="plan.name">
             </div>
             <div class="plan-description">
-              <p class="m-0"><strong>Arcade</strong></p>
-              <p class="p-0">$9/mo</p>
+              <p class="m-0"><strong>{{plan.name}}</strong></p>
+              <p class="m-0">
+                ${{ form["isYearly"].value ? plan.price.yearly : plan.price.monthly }}/{{ form["isYearly"].value ? 'yr' : 'mo' }}
+              </p>
+              <p class="m-0" *ngIf="form['isYearly'].value">
+                2 months free
+              </p>
             </div>
           </div>
-          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 2 ? 'plan-selected': ''" (click)="selectPlan(2)">
-            <div class="plan-icon">
-              <img src="assets/images/icon-advanced.svg" alt="Arcade Icon">
-            </div>
-            <div class="plan-description">
-              <p class="m-0"><strong>Advanced</strong></p>
-              <p class="p-0">$12/mo</p>
-            </div>
-          </div>
-          <div class="col-3 my-2 plan-box" [ngClass]="currentPlan == 3 ? 'plan-selected': ''" (click)="selectPlan(3)">
-            <div class="plan-icon">
-              <img src="assets/images/icon-pro.svg" alt="Pro Icon">
-            </div>
-            <div class="plan-description">
-              <p class="m-0"><strong>Pro</strong></p>
-              <p class="p-0">$15/mo</p>
-            </div>
-          </div>
+
         </div>
         <div class="col-12">
           <div class="period-toggle-area">
-            <span>Monthly</span>
-            <mat-slide-toggle formControlName="period" class="mx-2">
-              <span class="mx-2">Yearly</span> 
+            <span [ngClass]="!form['isYearly'].value ? 'period-selected' : ''">Monthly</span>
+            <mat-slide-toggle formControlName="isYearly" class="mx-2">
+              <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : ''">Yearly</span> 
             </mat-slide-toggle>
           </div>
         </div>
@@ -203,7 +195,7 @@
         <img src="assets\images\icon-thank-you.svg" width="60" alt="thank you image">
         <h1 class="step-main-title w-100">Thank you!</h1>
         <p>
-          Thanks for confirming ypur subscription! We hope you have fun using our platform. 
+          Thanks for confirming your subscription! We hope you have fun using our platform. 
           If you ever need support,please feel free to email us at support@loremgaming.com.
         </p>
       </div>
