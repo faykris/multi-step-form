@@ -10,12 +10,13 @@ import { gaming } from 'src/tools/plans.object';
 })
 export class MultiStepFormComponent {
   addUserForm: FormGroup;
-  currentStep: number = 2;
+  currentStep: number = 3;
   currentPlan: number = 1;
   finishedForm = false;
   plans: any[] = gaming.plans;
-  add_ons: any[] = gaming.add_ons;
+  addOns: any[] = gaming.add_ons;
   selectedPlan: any = {};
+  selectedAddOns: any[] = [];
 
   constructor(private formBuilder: FormBuilder) {
     this.addUserForm = this.formBuilder.group({
@@ -45,6 +46,14 @@ export class MultiStepFormComponent {
 
   isSecondStep() {
     this.currentStep += 1;
+  }
+
+  selectAddOn(addOnId: number) {
+    if (this.selectedAddOns.filter(addOn => addOn.id === addOnId).length > 0) {
+      this.selectedAddOns = this.selectedAddOns.filter(addOn => addOn.id !== addOnId);
+    } else {
+      this.selectedAddOns.push(this.addOns.filter(addOn=> addOn.id === addOnId)[0]);
+    }
   }
 
   selectPlan(planId: number) {

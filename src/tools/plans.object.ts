@@ -32,6 +32,7 @@ export const gaming = {
     {
       id: 1,
       description: 'Access to multiplayer games',
+      formInput: 'onlineService',
       name: 'Online service',
       price: {
         monthly: 1,
@@ -41,6 +42,7 @@ export const gaming = {
     {
       id: 2,
       description: 'Extra 1 TB of cloud save',
+      formInput: 'largeStorage',
       name: 'Large storage',
       price: {
         monthly: 2,
@@ -50,6 +52,7 @@ export const gaming = {
     {
       id: 3,
       description: 'Custom theme on your profile',
+      formInput: 'customizableProfile',
       name: 'Customizable profile',
       price: {
         monthly: 2,

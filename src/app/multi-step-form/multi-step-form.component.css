@@ -104,10 +104,20 @@
 .add-ons {
     display: flex;
     justify-content: space-between;
-    border: 1px solid var(--purplish-blue);
+    border: 1px solid var(--cool-gray);
     border-radius: 8px;
     padding: .4rem;
     height: 4.5rem;
+    transition: all .3s;
+}
+
+.add-ons:hover {
+    border: 1px solid var(--purplish-blue);
+}
+
+.selected-add-on {
+    border: 1px solid var(--purplish-blue);
+    background-color: var(--magnolia);
 }
 
 .add-ons-title {
