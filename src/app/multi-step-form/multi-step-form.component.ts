@@ -17,6 +17,7 @@ export class MultiStepFormComponent {
   addOns: any[] = gaming.add_ons;
   selectedPlan: any = {};
   selectedAddOns: any[] = [];
+  totalPayment: number = 0;
 
   constructor(private formBuilder: FormBuilder) {
     this.addUserForm = this.formBuilder.group({
@@ -54,11 +55,18 @@ export class MultiStepFormComponent {
     } else {
       this.selectedAddOns.push(this.addOns.filter(addOn=> addOn.id === addOnId)[0]);
     }
+
+    if (this.selectedAddOns.length > 1) {
+      this.selectedAddOns.sort(this.sortAddOns);
+    }
+  }
+
+  sortAddOns(a: any, b: any){
+    return a.id - b.id;
   }
 
   selectPlan(planId: number) {
     this.currentPlan = planId;
-    this.selectedPlan = this.plans.filter(plan => plan.id === planId)[0];
   }
 
   goStep(step: number) {
@@ -66,6 +74,14 @@ export class MultiStepFormComponent {
   }
 
   isThirdStep() {
+    this.selectedPlan = this.plans.filter(plan => plan.id === this.currentPlan)[0];
+    if (this.form['isYearly'].value) {
+      this.totalPayment = this.selectedPlan.price.yearly +
+        this.selectedAddOns.map(addOn => addOn.price.yearly).reduce((a, b) => a + b, 0); 
+    } else {
+      this.totalPayment = this.selectedPlan.price.monthly +
+        this.selectedAddOns.map(addOn => addOn.price.monthly).reduce((a, b) => a + b, 0);
+    }
     this.currentStep += 1;
   }
 

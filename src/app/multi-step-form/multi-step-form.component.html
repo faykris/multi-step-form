@@ -145,28 +145,36 @@
         <div class="col-11 my-2 finishing-card">
           <div class="finishing-header">
             <div>
-              <p class="m-0 finishing-plan">Arcade (Monthly)</p>
+              <p class="m-0 finishing-plan">
+                {{selectedPlan.name}} ({{form['isYearly'].value ? 'Yearly': 'Montly'}})
+              </p>
               <a href="#" (click)="goStep(2)">Change</a>
             </div>
             <div>
-              <p class="m-0">$9/mo</p>
+              <p class="m-0">
+                ${{form['isYearly'].value ? selectedPlan.price.yearly: selectedPlan.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
+              </p>
             </div>
           </div>
-          <div class="finishing-body">
+          <div class="finishing-body" *ngFor="let addOn of selectedAddOns">
             <div>
-              <p class="m-0">Online Service</p>
+              <p class="m-0">
+                {{addOn.name}}
+              </p>
             </div>
             <div>
-              <p class="m-0">+$1/mo</p>
+              <p class="m-0">
+                +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
+              </p>
             </div>
           </div>
         </div>
         <div class="col-11 my-2 finishing-total">
           <div>
-            <p class="m-0">Total(per month)</p>
+            <p class="m-0">Total({{form['isYearly'].value ? 'per year': 'per month'}})</p>
           </div>
           <div>
-            <h3 class="m-0">+$120/mo</h3>
+            <h3 class="m-0">+${{totalPayment}}/{{form['isYearly'].value ? 'yr': 'mo'}}</h3>
           </div>
         </div>
         <div class="col-11 my-6 d-flex justify-content-between">
@@ -175,6 +183,7 @@
         </div>
       </div>
     </form>
+    <!--Finale Screen -->
     <div *ngIf="currentStep === 4 && finishedForm" class="thanks"> 
       <div class="thanks-container">
         <img src="assets\images\icon-thank-you.svg" width="60" alt="thank you image">
