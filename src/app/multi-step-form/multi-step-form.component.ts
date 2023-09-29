@@ -10,7 +10,7 @@ import { gaming } from 'src/tools/plans.object';
 })
 export class MultiStepFormComponent {
   addUserForm: FormGroup;
-  currentStep: number = 3;
+  currentStep: number = 1;
   currentPlan: number = 1;
   finishedForm = false;
   plans: any[] = gaming.plans;

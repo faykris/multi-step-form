@@ -1,199 +1,202 @@
-<div class="multi-step-box">
-  <div class="col-12 col-md-5 sidebar-desktop">
-    <div class="sidebar-steps m-4">
-      <div class="row">
-        <div class="col-3 col-xxl-2 d-flex justify-content-center">
-          <div class="step-number" [ngClass]="currentStep === 1 ? 'step-selected': ''">1</div>
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+  <div class="multi-step-box">
+    <div class="sidebar-banner">
+      <div class="sidebar-steps m-4">
+        <div class="row">
+          <div class="col-3 d-flex justify-content-center">
+            <div class="step-number" [ngClass]="currentStep === 1 ? 'step-selected': ''">1</div>
+          </div>
+          <div class="col-9 px-0">
+            <p class="step-text">step 1</p>
+            <p class="step-title">your info</p>
+          </div>
         </div>
-        <div class="col-9 px-0">
-          <p class="step-text">step 1</p>
-          <p class="step-title">your info</p>
+        <div class="row">
+          <div class="col-3 d-flex justify-content-center align-center">
+            <div class="step-number" [ngClass]="currentStep === 2 ? 'step-selected': ''">2</div>
+          </div>
+          <div class="col-9 px-0">
+            <p class="step-text">step 2</p>
+            <p class="step-title">select plan</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 d-flex justify-content-center align-center">
+            <div class="step-number" [ngClass]="currentStep === 3 ? 'step-selected': ''">3</div>
+          </div>
+          <div class="col-9 px-0">
+            <p class="step-text">step 3</p>
+            <p class="step-title">add-ons</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 d-flex justify-content-center align-center">
+            <div class="step-number" [ngClass]="currentStep === 4 ? 'step-selected': ''">4</div>
+          </div>
+          <div class="col-9 px-0">
+            <p class="step-text">step 4</p>
+            <p class="step-title">summary</p>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number" [ngClass]="currentStep === 2 ? 'step-selected': ''">2</div>
-        </div>
-        <div class="col-9 px-0">
-          <p class="step-text">step 2</p>
-          <p class="step-title">select plan</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number" [ngClass]="currentStep === 3 ? 'step-selected': ''">3</div>
-        </div>
-        <div class="col-9 px-0">
-          <p class="step-text">step 3</p>
-          <p class="step-title">add-ons</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 col-xxl-2 d-flex justify-content-center align-center">
-          <div class="step-number" [ngClass]="currentStep === 4 ? 'step-selected': ''">4</div>
-        </div>
-        <div class="col-9 px-0">
-          <p class="step-text">step 4</p>
-          <p class="step-title">summary</p>
-        </div>
-      </div>
+      <img src="assets\images\bg-sidebar-desktop.svg" alt="sidebar img desktop">
     </div>
-    <img src="assets\images\bg-sidebar-desktop.svg" alt="sidebar img desktop">
-  </div>
-  <div class="col-12 col-md-7 px-4">
-    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <div class="sidebar-info">
       <!-- Step 1 - Your Info -->
-      <div *ngIf="currentStep === 1" class="row mt-4">
-        <h1 class="step-main-title">Personal info</h1>
-        <p class="personal-info-text">Please provide your name, email address, and phone number.</p>
-        <div class="col-11 my-2">
-          <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Nombre" formControlName="name">
-            <mat-error *ngIf="addUserForm.get('name')!.hasError('required')">This field is required</mat-error>
-          </mat-form-field>
+      <div *ngIf="currentStep === 1" class="mt-4 d-flex align-content-between flex-wrap w-100">
+        <div class="w-100">
+          <h1 class="step-main-title">Personal info</h1>
+          <p class="personal-info-text">Please provide your name, email address, and phone number.</p>
+          <div class="col-12 my-2">
+            <mat-form-field class="w-100">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Nombre" formControlName="name">
+              <mat-error *ngIf="addUserForm.get('name')!.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 my-2">
+            <mat-form-field class="w-100">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="addUserForm.get('email')!.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 mt-2 mb-6">
+            <mat-form-field class="w-100">
+              <mat-label>Phone</mat-label>
+              <input matInput placeholder="email@gmail.com" formControlName="phone">
+              <mat-error *ngIf="addUserForm.get('phone')!.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-11 my-2">
-          <mat-form-field class="w-100">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="addUserForm.get('email')!.hasError('required')">This field is required</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-11 mt-2 mb-6">
-          <mat-form-field class="w-100">
-            <mat-label>Phone</mat-label>
-            <input matInput placeholder="email@gmail" formControlName="phone">
-            <mat-error *ngIf="addUserForm.get('phone')!.hasError('required')">This field is required</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-11 my-6 d-flex justify-content-end">
-          <button class="btn btn-primary" (click)="isFirstStep()">Next step</button>
+        <div class="my-6 sidebar-footer">
+          <button class="next-step-btn" (click)="isFirstStep()">Next step</button>
         </div>
 
-      </div>
-      <!-- Step 2 - Select Plan -->
-      <div *ngIf="currentStep === 2" class="row mt-4">
-        <h1 class="step-main-title">Select your plan</h1>
-        <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
-        <div class="row px-0 mx-0">
-          <div class="col-3 my-2 plan-box"
-            *ngFor="let plan of plans"
-            [ngClass]="currentPlan === plan.id ? 'plan-selected': ''"
-            (click)="selectPlan(plan.id)">
-            <div class="plan-icon">
-              <img [src]="plan.image_url" [alt]="plan.name">
-            </div>
-            <div class="plan-description">
-              <p class="m-0"><strong>{{plan.name}}</strong></p>
-              <p class="m-0">
-                ${{ form["isYearly"].value ? plan.price.yearly : plan.price.monthly }}/{{ form["isYearly"].value ? 'yr' : 'mo' }}
-              </p>
-              <p class="m-0" *ngIf="form['isYearly'].value">
-                2 months free
-              </p>
+        </div>
+        <!-- Step 2 - Select Plan -->
+        <div *ngIf="currentStep === 2" class="mt-4">
+          <h1 class="step-main-title">Select your plan</h1>
+          <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
+          <div class="row px-0 mx-0">
+            <div class="col-3 my-2 plan-box"
+              *ngFor="let plan of plans"
+              [ngClass]="currentPlan === plan.id ? 'plan-selected': ''"
+              (click)="selectPlan(plan.id)">
+              <div class="plan-icon">
+                <img [src]="plan.image_url" [alt]="plan.name">
+              </div>
+              <div class="plan-description">
+                <p class="m-0"><strong>{{plan.name}}</strong></p>
+                <p class="m-0">
+                  ${{ form["isYearly"].value ? plan.price.yearly : plan.price.monthly }}/{{ form["isYearly"].value ? 'yr' : 'mo' }}
+                </p>
+                <p class="m-0" *ngIf="form['isYearly'].value">
+                  2 months free
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-12">
-          <div class="period-toggle-area">
-            <span [ngClass]="!form['isYearly'].value ? 'period-selected' : ''">Monthly</span>
-            <mat-slide-toggle formControlName="isYearly" class="mx-2">
-              <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : ''">Yearly</span> 
-            </mat-slide-toggle>
+          <div class="col-12">
+            <div class="period-toggle-area">
+              <span [ngClass]="!form['isYearly'].value ? 'period-selected' : ''">Monthly</span>
+              <mat-slide-toggle formControlName="isYearly" class="mx-2">
+                <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : ''">Yearly</span> 
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <div class="col-11 my-6 d-flex justify-content-between">
+            <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+            <button class="btn btn-primary" (click)="isSecondStep()">Next step</button>
           </div>
         </div>
-        <div class="col-11 my-6 d-flex justify-content-between">
-          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
-          <button class="btn btn-primary" (click)="isSecondStep()">Next step</button>
-        </div>
-      </div>
 
-      <!-- Step 3 - Add-Ons -->
-      <div *ngIf="currentStep === 3" class="row mt-4">
-        <h1 class="step-main-title">Pick add-ons</h1>
-        <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
-        <div class="col-11 add-ons my-2"
-          *ngFor="let addOn of addOns"
-          [ngClass]="form[addOn.formInput].value ? 'selected-add-on': ''"
-        >
-          <div>
-            <mat-checkbox name="fieldName" ngDefaultControl
-              [formControlName]="addOn.formInput"
-              (change)="selectAddOn(addOn.id)"
-            >
-              <p class="add-ons-title">{{addOn.name}}</p>
-              <p class="personal-info-text">{{addOn.description}}</p>
-            </mat-checkbox>
-          </div>
-          <div class="add-ons-price">
-            <p class="m-0">
-              +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
-            </p>
-          </div>
-        </div>
-        <div class="col-11 my-6 d-flex justify-content-between">
-          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
-          <button class="btn btn-primary" (click)="isThirdStep()">Next step</button>
-        </div>
-      </div>
-
-      <!-- Step 4 - Summary -->
-      <div *ngIf="currentStep === 4 && !finishedForm" class="row mt-4">
-        <h1 class="step-main-title">Finishing up</h1>
-        <p class="personal-info-text">Double-check everything looks OK before confiming.</p>
-        <div class="col-11 my-2 finishing-card">
-          <div class="finishing-header">
+        <!-- Step 3 - Add-Ons -->
+        <div *ngIf="currentStep === 3" class="mt-4">
+          <h1 class="step-main-title">Pick add-ons</h1>
+          <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
+          <div class="col-11 add-ons my-2"
+            *ngFor="let addOn of addOns"
+            [ngClass]="form[addOn.formInput].value ? 'selected-add-on': ''"
+          >
             <div>
-              <p class="m-0 finishing-plan">
-                {{selectedPlan.name}} ({{form['isYearly'].value ? 'Yearly': 'Montly'}})
-              </p>
-              <a href="#" (click)="goStep(2)">Change</a>
+              <mat-checkbox name="fieldName" ngDefaultControl
+                [formControlName]="addOn.formInput"
+                (change)="selectAddOn(addOn.id)"
+              >
+                <p class="add-ons-title">{{addOn.name}}</p>
+                <p class="personal-info-text">{{addOn.description}}</p>
+              </mat-checkbox>
             </div>
-            <div>
-              <p class="m-0">
-                ${{form['isYearly'].value ? selectedPlan.price.yearly: selectedPlan.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
-              </p>
-            </div>
-          </div>
-          <div class="finishing-body" *ngFor="let addOn of selectedAddOns">
-            <div>
-              <p class="m-0">
-                {{addOn.name}}
-              </p>
-            </div>
-            <div>
+            <div class="add-ons-price">
               <p class="m-0">
                 +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
               </p>
             </div>
           </div>
-        </div>
-        <div class="col-11 my-2 finishing-total">
-          <div>
-            <p class="m-0">Total ({{form['isYearly'].value ? 'per year': 'per month'}})</p>
-          </div>
-          <div>
-            <h3 class="m-0">+${{totalPayment}}/{{form['isYearly'].value ? 'yr': 'mo'}}</h3>
+          <div class="col-11 my-6 d-flex justify-content-between">
+            <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+            <button class="btn btn-primary" (click)="isThirdStep()">Next step</button>
           </div>
         </div>
-        <div class="col-11 my-6 d-flex justify-content-between">
-          <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
-          <button class="btn btn-primary" type="submit">Confirm</button>
+
+        <!-- Step 4 - Summary -->
+        <div *ngIf="currentStep === 4 && !finishedForm" class="mt-4">
+          <h1 class="step-main-title">Finishing up</h1>
+          <p class="personal-info-text">Double-check everything looks OK before confiming.</p>
+          <div class="col-11 my-2 finishing-card">
+            <div class="finishing-header">
+              <div>
+                <p class="m-0 finishing-plan">
+                  {{selectedPlan.name}} ({{form['isYearly'].value ? 'Yearly': 'Montly'}})
+                </p>
+                <a href="#" (click)="goStep(2)">Change</a>
+              </div>
+              <div>
+                <p class="m-0">
+                  ${{form['isYearly'].value ? selectedPlan.price.yearly: selectedPlan.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
+                </p>
+              </div>
+            </div>
+            <div class="finishing-body" *ngFor="let addOn of selectedAddOns">
+              <div>
+                <p class="m-0">
+                  {{addOn.name}}
+                </p>
+              </div>
+              <div>
+                <p class="m-0">
+                  +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-11 my-2 finishing-total">
+            <div>
+              <p class="m-0">Total ({{form['isYearly'].value ? 'per year': 'per month'}})</p>
+            </div>
+            <div>
+              <h3 class="m-0">+${{totalPayment}}/{{form['isYearly'].value ? 'yr': 'mo'}}</h3>
+            </div>
+          </div>
+          <div class="col-11 my-6 d-flex justify-content-between">
+            <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
+            <button class="btn btn-primary" type="submit">Confirm</button>
+          </div>
         </div>
-      </div>
-    </form>
-    <!--Finale Screen -->
-    <div *ngIf="currentStep === 4 && finishedForm" class="thanks"> 
-      <div class="thanks-container">
-        <img src="assets\images\icon-thank-you.svg" width="60" alt="thank you image">
-        <h1 class="step-main-title w-100">Thank you!</h1>
-        <p>
-          Thanks for confirming your subscription! We hope you have fun using our platform. 
-          If you ever need support,please feel free to email us at support@loremgaming.com.
-        </p>
+      
+      <!--Finale Screen -->
+      <div *ngIf="currentStep === 4 && finishedForm" class="thanks"> 
+        <div class="thanks-container">
+          <img src="assets\images\icon-thank-you.svg" width="60" alt="thank you image">
+          <h1 class="step-main-title w-100">Thank you!</h1>
+          <p>
+            Thanks for confirming your subscription! We hope you have fun using our platform. 
+            If you ever need support,please feel free to email us at support@loremgaming.com.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
 
