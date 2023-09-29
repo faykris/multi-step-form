@@ -104,8 +104,7 @@
                 <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : 'period-not-selected'">Yearly</span> 
               </mat-slide-toggle>
             </div>
-          </div>
-          
+          </div>      
           <div class="my-6 sidebar-footer justify-content-between">
             <button class="prev-step-btn" (click)="previousStep()">Go Back</button>
             <button class="next-step-btn" (click)="isSecondStep()">Next step</button>
@@ -113,31 +112,34 @@
         </div>
 
         <!-- Step 3 - Add-Ons -->
-        <div *ngIf="currentStep === 3" class="mt-4">
-          <h1 class="step-main-title">Pick add-ons</h1>
-          <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
-          <div class="col-11 add-ons my-2"
-            *ngFor="let addOn of addOns"
-            [ngClass]="form[addOn.formInput].value ? 'selected-add-on': ''"
-          >
-            <div>
-              <mat-checkbox name="fieldName" ngDefaultControl
-                [formControlName]="addOn.formInput"
-                (change)="selectAddOn(addOn.id)"
-              >
-                <p class="add-ons-title">{{addOn.name}}</p>
-                <p class="personal-info-text">{{addOn.description}}</p>
-              </mat-checkbox>
-            </div>
-            <div class="add-ons-price">
-              <p class="m-0">
-                +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
-              </p>
+        <div *ngIf="currentStep === 3" class="mt-4 d-flex align-content-between flex-wrap w-100">
+          <div class="w-100">
+            <h1 class="step-main-title">Pick add-ons</h1>
+            <p class="personal-info-text">Add-ons help enhance your gaming experience.</p>
+            <div class="add-ons my-2"
+              *ngFor="let addOn of addOns"
+              [ngClass]="form[addOn.formInput].value ? 'selected-add-on': ''"
+            >
+              <div>
+                <mat-checkbox name="fieldName" ngDefaultControl
+                  [formControlName]="addOn.formInput"
+                  (change)="selectAddOn(addOn.id)"
+                >
+                  <p class="add-ons-title">{{addOn.name}}</p>
+                  <p class="personal-info-text">{{addOn.description}}</p>
+                </mat-checkbox>
+              </div>
+              <div class="add-ons-price">
+                <p class="m-0">
+                  +${{form['isYearly'].value ? addOn.price.yearly: addOn.price.monthly}}/{{form['isYearly'].value ? 'yr': 'mo'}}
+                </p>
+              </div>
             </div>
           </div>
-          <div class="col-11 my-6 d-flex justify-content-between">
-            <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
-            <button class="btn btn-primary" (click)="isThirdStep()">Next step</button>
+        
+          <div class="my-6 sidebar-footer justify-content-between">
+            <button class="prev-step-btn" (click)="previousStep()">Go Back</button>
+            <button class="next-step-btn" (click)="isThirdStep()">Next step</button>
           </div>
         </div>
 
