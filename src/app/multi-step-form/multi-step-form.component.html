@@ -1,4 +1,4 @@
-<div class="row py-3 px-1 rounded-4 bg-light mx-5 my-3">
+<div class="multi-step-box">
   <div class="col-12 col-md-5 sidebar-desktop">
     <div class="sidebar-steps m-4">
       <div class="row">
@@ -171,7 +171,7 @@
         </div>
         <div class="col-11 my-2 finishing-total">
           <div>
-            <p class="m-0">Total({{form['isYearly'].value ? 'per year': 'per month'}})</p>
+            <p class="m-0">Total ({{form['isYearly'].value ? 'per year': 'per month'}})</p>
           </div>
           <div>
             <h3 class="m-0">+${{totalPayment}}/{{form['isYearly'].value ? 'yr': 'mo'}}</h3>
