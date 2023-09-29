@@ -69,45 +69,46 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="my-6 sidebar-footer">
+        <div class="my-6 sidebar-footer justify-content-end">
           <button class="next-step-btn" (click)="isFirstStep()">Next step</button>
         </div>
 
         </div>
         <!-- Step 2 - Select Plan -->
-        <div *ngIf="currentStep === 2" class="mt-4">
-          <h1 class="step-main-title">Select your plan</h1>
-          <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
-          <div class="row px-0 mx-0">
-            <div class="col-3 my-2 plan-box"
-              *ngFor="let plan of plans"
-              [ngClass]="currentPlan === plan.id ? 'plan-selected': ''"
-              (click)="selectPlan(plan.id)">
-              <div class="plan-icon">
-                <img [src]="plan.image_url" [alt]="plan.name">
-              </div>
-              <div class="plan-description">
-                <p class="m-0"><strong>{{plan.name}}</strong></p>
-                <p class="m-0">
-                  ${{ form["isYearly"].value ? plan.price.yearly : plan.price.monthly }}/{{ form["isYearly"].value ? 'yr' : 'mo' }}
-                </p>
-                <p class="m-0" *ngIf="form['isYearly'].value">
-                  2 months free
-                </p>
+        <div *ngIf="currentStep === 2" class="mt-4 d-flex align-content-between flex-wrap w-100">
+          <div class="w-100">
+            <h1 class="step-main-title">Select your plan</h1>
+            <p class="personal-info-text">You have the option of monthly or yearly billing.</p>
+            <div class="row px-0 mx-0 justify-content-between">
+              <div class="plan-box"
+                *ngFor="let plan of plans"
+                [ngClass]="currentPlan === plan.id ? 'plan-selected': ''"
+                (click)="selectPlan(plan.id)">
+                <div class="plan-icon">
+                  <img [src]="plan.image_url" [alt]="plan.name">
+                </div>
+                <div class="plan-description">
+                  <p class="m-0"><strong>{{plan.name}}</strong></p>
+                  <p class="m-0">
+                    ${{ form["isYearly"].value ? plan.price.yearly : plan.price.monthly }}/{{ form["isYearly"].value ? 'yr' : 'mo' }}
+                  </p>
+                  <p class="m-0" *ngIf="form['isYearly'].value">
+                    2 months free
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-12">
             <div class="period-toggle-area">
-              <span [ngClass]="!form['isYearly'].value ? 'period-selected' : ''">Monthly</span>
+              <span [ngClass]="!form['isYearly'].value ? 'period-selected' : 'period-not-selected'">Monthly</span>
               <mat-slide-toggle formControlName="isYearly" class="mx-2">
-                <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : ''">Yearly</span> 
+                <span class="mx-2" [ngClass]="form['isYearly'].value ? 'period-selected' : 'period-not-selected'">Yearly</span> 
               </mat-slide-toggle>
             </div>
           </div>
-          <div class="col-11 my-6 d-flex justify-content-between">
-            <button class="btn btn-secondary" (click)="previousStep()">Go Back</button>
-            <button class="btn btn-primary" (click)="isSecondStep()">Next step</button>
+          
+          <div class="my-6 sidebar-footer justify-content-between">
+            <button class="prev-step-btn" (click)="previousStep()">Go Back</button>
+            <button class="next-step-btn" (click)="isSecondStep()">Next step</button>
           </div>
         </div>
 
