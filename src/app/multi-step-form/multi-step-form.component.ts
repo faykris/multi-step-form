@@ -40,9 +40,9 @@ export class MultiStepFormComponent {
   }
 
   isFirstStep() {
-    if (this.addUserForm.valid) {
+    // if (this.addUserForm.valid) {
       this.currentStep += 1;
-    }
+    // }
   }
 
   isSecondStep() {
