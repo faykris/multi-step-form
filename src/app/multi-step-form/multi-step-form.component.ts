@@ -23,7 +23,7 @@ export class MultiStepFormComponent {
     this.addUserForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      phone: ['', [Validators.required]],
       isYearly: [false],
       onlineService: [false],
       largeStorage: [false],
