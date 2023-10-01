@@ -367,4 +367,20 @@
     .mobile-step-container {
         display: block;
     }
+
+    .plan-box {
+        padding: 2vw;
+    }
+
+    .add-ons {
+        margin: .5rem 0;
+    }
+
+    .add-ons-price {
+        padding-left: 0;
+    }
+
+    .thanks {
+        padding: 1.5rem;
+    }
 }
